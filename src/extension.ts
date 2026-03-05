@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 
-const CLAUDE_CODE_COMMAND_IDS = ['claude-code.focusInput', 'anthropic.claude-code.focusInput'];
+// Claude Code 2.x 使用 claude-vscode.focus；旧版本可能用其他 id
+const CLAUDE_CODE_COMMAND_IDS = ['claude-vscode.focus', 'claude-code.focusInput', 'anthropic.claude-code.focusInput'];
 
 async function focusClaudeCodeInput(): Promise<void> {
   for (const commandId of CLAUDE_CODE_COMMAND_IDS) {

@@ -49,7 +49,7 @@
         "copyCodeLine.autoFocusClaudeCode": {
           "type": "boolean",
           "default": true,
-          "description": "复制后自动聚焦 Claude Code 输入框，便于 Ctrl+V 粘贴"
+          "description": "复制后自动聚焦 Claude Code 输入框，内容通常会直接出现在输入框中，若无则按 Ctrl+V 粘贴"
         }
       }
     }
