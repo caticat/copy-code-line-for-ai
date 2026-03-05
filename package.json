@@ -28,6 +28,15 @@
         "when": "editorTextFocus"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "copyCodeLineForAI.copy",
+          "when": "editorTextFocus",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    },
     "configuration": {
       "title": "Copy Code Line For AI",
       "properties": {
