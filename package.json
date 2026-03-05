@@ -1,0 +1,66 @@
+{
+  "name": "copy-code-line",
+  "displayName": "Copy Code Line",
+  "description": "复制代码段所在文件的相对路径和行号范围",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:copyCodeLine.copy"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "copyCodeLine.copy",
+        "title": "Copy Code Line Reference"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "copyCodeLine.copy",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Copy Code Line",
+      "properties": {
+        "copyCodeLine.prefix": {
+          "type": "string",
+          "default": "@",
+          "description": "路径前缀字符，如 @ 或 #"
+        },
+        "copyCodeLine.pathLineSeparator": {
+          "type": "string",
+          "default": ":",
+          "description": "路径与行号之间的分隔符"
+        },
+        "copyCodeLine.lineRangeSeparator": {
+          "type": "string",
+          "default": "-",
+          "description": "行号范围分隔符，如 162-167 中的 -"
+        },
+        "copyCodeLine.autoFocusClaudeCode": {
+          "type": "boolean",
+          "default": true,
+          "description": "复制后自动聚焦 Claude Code 输入框，便于 Ctrl+V 粘贴"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.0.0"
+  }
+}
