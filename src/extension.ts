@@ -1,24 +1,12 @@
 import * as vscode from 'vscode';
 
-// Claude Code 2.x 使用 claude-vscode.focus；旧版本可能用其他 id
-const CLAUDE_CODE_COMMAND_IDS = ['claude-vscode.focus', 'claude-code.focusInput', 'anthropic.claude-code.focusInput'];
-
-async function focusClaudeCodeInput(): Promise<void> {
-  for (const commandId of CLAUDE_CODE_COMMAND_IDS) {
-    try {
-      await vscode.commands.executeCommand(commandId);
-      return;
-    } catch {
-      // Extension may not be installed, try next
-    }
-  }
-}
+const CLAUDE_CODE_FOCUS_COMMAND = 'claude-vscode.focus';
 
 export function activate(context: vscode.ExtensionContext): void {
-  const disposable = vscode.commands.registerCommand('copyCodeLine.copy', async () => {
+  const disposable = vscode.commands.registerCommand('copyCodeLineForAI.copy', async () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
-      vscode.window.showWarningMessage('Copy Code Line: 请先打开一个文件');
+      vscode.window.showWarningMessage('Copy Code Line For AI: 请先打开一个文件');
       return;
     }
 
@@ -30,7 +18,7 @@ export function activate(context: vscode.ExtensionContext): void {
     const endLine = isEmpty ? selection.active.line : selection.end.line;
 
     const relativePath = vscode.workspace.asRelativePath(editor.document.uri, false);
-    const config = vscode.workspace.getConfiguration('copyCodeLine');
+    const config = vscode.workspace.getConfiguration('copyCodeLineForAI');
 
     const prefix = config.get<string>('prefix', '@');
     const pathSep = config.get<string>('pathLineSeparator', ':');
@@ -42,7 +30,11 @@ export function activate(context: vscode.ExtensionContext): void {
 
     const autoFocus = config.get<boolean>('autoFocusClaudeCode', true);
     if (autoFocus) {
-      await focusClaudeCodeInput();
+      try {
+        await vscode.commands.executeCommand(CLAUDE_CODE_FOCUS_COMMAND);
+      } catch {
+        // Claude Code 未安装时静默跳过
+      }
     }
 
     vscode.window.showInformationMessage(`已复制: ${result}`);

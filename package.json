@@ -1,6 +1,6 @@
 {
-  "name": "copy-code-line",
-  "displayName": "Copy Code Line",
+  "name": "copy-code-line-for-ai",
+  "displayName": "Copy Code Line For AI",
   "description": "复制代码段所在文件的相对路径和行号范围",
   "version": "0.1.0",
   "engines": {
@@ -10,43 +10,43 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:copyCodeLine.copy"
+    "onCommand:copyCodeLineForAI.copy"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "copyCodeLine.copy",
-        "title": "Copy Code Line Reference"
+        "command": "copyCodeLineForAI.copy",
+        "title": "Copy Code Line For AI: Copy Reference"
       }
     ],
     "keybindings": [
       {
-        "command": "copyCodeLine.copy",
+        "command": "copyCodeLineForAI.copy",
         "key": "ctrl+shift+c",
         "mac": "cmd+shift+c",
         "when": "editorTextFocus"
       }
     ],
     "configuration": {
-      "title": "Copy Code Line",
+      "title": "Copy Code Line For AI",
       "properties": {
-        "copyCodeLine.prefix": {
+        "copyCodeLineForAI.prefix": {
           "type": "string",
           "default": "@",
           "description": "路径前缀字符，如 @ 或 #"
         },
-        "copyCodeLine.pathLineSeparator": {
+        "copyCodeLineForAI.pathLineSeparator": {
           "type": "string",
           "default": ":",
           "description": "路径与行号之间的分隔符"
         },
-        "copyCodeLine.lineRangeSeparator": {
+        "copyCodeLineForAI.lineRangeSeparator": {
           "type": "string",
           "default": "-",
           "description": "行号范围分隔符，如 162-167 中的 -"
         },
-        "copyCodeLine.autoFocusClaudeCode": {
+        "copyCodeLineForAI.autoFocusClaudeCode": {
           "type": "boolean",
           "default": true,
           "description": "复制后自动聚焦 Claude Code 输入框，内容通常会直接出现在输入框中，若无则按 Ctrl+V 粘贴"
