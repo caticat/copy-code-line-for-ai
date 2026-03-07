@@ -49,22 +49,22 @@
         "copyCodeLineForAI.prefix": {
           "type": "string",
           "default": "@",
-          "description": "路径前缀字符，如 @ 或 #"
+          "description": "Path prefix character, e.g. @ or #"
         },
         "copyCodeLineForAI.pathLineSeparator": {
           "type": "string",
           "default": ":",
-          "description": "路径与行号之间的分隔符"
+          "description": "Separator between path and line numbers"
         },
         "copyCodeLineForAI.lineRangeSeparator": {
           "type": "string",
           "default": "-",
-          "description": "行号范围分隔符，如 162-167 中的 -"
+          "description": "Line range separator, e.g. - in 162-167"
         },
         "copyCodeLineForAI.autoFocusClaudeCode": {
           "type": "boolean",
           "default": true,
-          "description": "复制后自动聚焦 Claude Code 输入框，内容通常会直接出现在输入框中，若无则按 Ctrl+V 粘贴"
+          "description": "Auto-focus Claude Code input box after copy; content usually appears directly, otherwise paste with Ctrl+V"
         }
       }
     }

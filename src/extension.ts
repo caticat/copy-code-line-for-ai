@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext): void {
   const disposable = vscode.commands.registerCommand('copyCodeLineForAI.copy', async () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
-      vscode.window.showWarningMessage('Copy Code Line For AI: 请先打开一个文件');
+      vscode.window.showWarningMessage('Copy Code Line For AI: Please open a file first');
       return;
     }
 
@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext): void {
       }
     }
 
-    vscode.window.showInformationMessage(`已复制: ${result}`);
+    vscode.window.showInformationMessage(`Copied: ${result}`);
   });
 
   context.subscriptions.push(disposable);
