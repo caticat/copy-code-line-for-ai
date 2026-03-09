@@ -2,13 +2,27 @@
 
 [中文文档](README.zh.md)
 
-Copy the relative path and line range of the selected code block. Output format: `@public/rpc/friend.pb.go:162-167`. Works with VS Code and Cursor.
+The fastest way to reference your code in [Claude Code](https://claude.ai/code). Select any code block, press `Ctrl+Shift+C`, and the reference (e.g. `@src/foo.ts:10-20`) is instantly sent to Claude Code's input box—ready for questions, reviews, or fixes without any manual copy-paste.
+
+Works with VS Code and Cursor.
+
+## Why Claude Code users love this
+
+When chatting with Claude Code, you often need to point Claude at a specific piece of code. Without this extension, you'd have to manually type the file path and line numbers. With it:
+
+1. Select the code you want Claude to look at
+2. Press `Ctrl+Shift+C`
+3. Claude Code input box auto-focuses and the reference appears — just start typing your question
+
+Claude Code natively understands the `@file:line` format and will read the exact lines you referenced.
+
+> **Note:** Claude Code may auto-convert the reference format — e.g. `@public/rpc/proto_id.pb.go:134-136` becomes `@public/rpc/proto_id.pb.go#134-136`. This is normal; both formats point to the same lines.
 
 ## Features
 
-- **Core**: Copy "relative path + line range" after selecting code
+- **Claude Code integration**: Auto-focuses Claude Code input box after copy; reference appears instantly, ready to send
+- **Core**: Copy "relative path + line range" after selecting code — output format: `@public/rpc/friend.pb.go:162-167`
 - **Configurable format**: Prefix `@`, path-line separator `:`, and line range separator `-` are all customizable
-- **Claude Code integration**: Optionally auto-focus Claude Code input box after copy; content usually appears directly
 - **Shortcut**: `Ctrl+Shift+C` (Mac: `Cmd+Shift+C`)
 - **Context menu**: Right-click in editor, find the command under Copy/Paste section
 - **No selection**: When nothing is selected, copies the current line reference

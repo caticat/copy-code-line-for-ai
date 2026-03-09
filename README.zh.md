@@ -2,13 +2,27 @@
 
 [English](README.md)
 
-复制代码段所在文件的相对路径和行号范围，输出格式如 `@public/rpc/friend.pb.go:162-167`。适用于 VS Code 与 Cursor。
+与 [Claude Code](https://claude.ai/code) 配合使用的最快代码引用方式。选中任意代码块，按 `Ctrl+Shift+C`，引用（如 `@src/foo.ts:10-20`）会立即发送到 Claude Code 输入框——无需手动复制粘贴，直接开始提问、Review 或修 Bug。
+
+适用于 VS Code 与 Cursor。
+
+## 为什么 Claude Code 用户喜欢它
+
+在与 Claude Code 对话时，经常需要指向某段具体的代码。没有这个扩展，你需要手动输入文件路径和行号。有了它：
+
+1. 选中你想让 Claude 查看的代码
+2. 按 `Ctrl+Shift+C`
+3. Claude Code 输入框自动聚焦，引用直接出现——开始输入你的问题即可
+
+Claude Code 原生理解 `@文件:行号` 格式，会精确读取你引用的那几行代码。
+
+> **提示：** Claude Code 可能会自动转换引用格式——例如 `@public/rpc/proto_id.pb.go:134-136` 会变为 `@public/rpc/proto_id.pb.go#134-136`，这是正常现象，两种格式指向同一段代码。
 
 ## 功能
 
-- **核心**：选中代码后复制「相对路径 + 行号范围」
+- **Claude Code 集成**：复制后自动聚焦 Claude Code 输入框，引用即时出现，直接可发
+- **核心**：选中代码后复制「相对路径 + 行号范围」，输出格式如 `@public/rpc/friend.pb.go:162-167`
 - **格式可配置**：前缀 `@`、路径-行号分隔符 `:`、行号分隔符 `-` 均可自定义
-- **Claude Code 集成**：复制后可选择自动聚焦 Claude Code 输入框，内容通常会直接出现在输入框中
 - **快捷键**：`Ctrl+Shift+C`（Mac: `Cmd+Shift+C`）
 - **右键菜单**：编辑器中右键，在复制/粘贴区域可找到本命令
 - **无选区**：无选区时自动复制当前行引用

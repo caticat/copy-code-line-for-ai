@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext): void {
       }
     }
 
-    vscode.window.showInformationMessage(`Copied: ${result}`);
+    // vscode.window.showInformationMessage(`Copied: ${result}`);
   });
 
   context.subscriptions.push(disposable);

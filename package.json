@@ -1,9 +1,9 @@
 {
   "name": "copy-code-line-for-ai",
   "displayName": "Copy Code Line For AI",
-  "description": "复制代码段所在文件的相对路径和行号范围",
+  "description": "Copy the relative file path and line number range of a code snippet",
   "publisher": "panjie039",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/caticat/copy-code-line-for-ai"
