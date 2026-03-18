@@ -25,18 +25,34 @@ export function activate(context: vscode.ExtensionContext): void {
     const pathSep = config.get<string>('pathLineSeparator', ':');
     const lineSep = config.get<string>('lineRangeSeparator', '-');
 
-    const result = `${prefix}${relativePath}${pathSep}${startLine + 1}${lineSep}${endLine + 1}`;
+    const lineRange = isEmpty
+      ? `${startLine + 1}`
+      : `${startLine + 1}${lineSep}${endLine + 1}`;
+    const result = `${prefix}${relativePath}${pathSep}${lineRange}`;
 
     await vscode.env.clipboard.writeText(result);
 
     const autoFocus = config.get<boolean>('autoFocusClaudeCode', true);
     if (autoFocus) {
+      // 无选区时临时选中光标附近一个字符，触发 Claude Code 的剪贴板读取
+      if (isEmpty) {
+        const pos = selection.active;
+        const line = editor.document.lineAt(pos.line);
+        const selectEnd = pos.character < line.text.length
+          ? pos.translate(0, 1)
+          : pos.character > 0 ? pos.translate(0, -1) : pos;
+        editor.selection = new vscode.Selection(pos, selectEnd);
+      }
       // 延迟聚焦，确保剪贴板已写入完成后再让 Claude Code 读取
       await new Promise((r) => setTimeout(r, CLIPBOARD_DELAY_MS));
       try {
         await vscode.commands.executeCommand(CLAUDE_CODE_FOCUS_COMMAND);
       } catch {
         // Claude Code 未安装时静默跳过
+      }
+      // 恢复原来的光标位置
+      if (isEmpty) {
+        editor.selection = selection;
       }
     }
 
