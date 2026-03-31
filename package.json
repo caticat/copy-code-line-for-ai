@@ -61,10 +61,16 @@
           "default": "-",
           "description": "Line range separator, e.g. - in 162-167"
         },
-        "copyCodeLineForAI.autoFocusClaudeCode": {
-          "type": "boolean",
-          "default": true,
-          "description": "Auto-focus Claude Code input box after copy; content usually appears directly, otherwise paste with Ctrl+V"
+        "copyCodeLineForAI.autoFocusTarget": {
+          "type": "string",
+          "enum": ["claudeCode", "vscodeChat", "none"],
+          "enumDescriptions": [
+            "Auto-focus Claude Code input box and paste the reference",
+            "Auto-focus VS Code built-in Chat panel and paste the reference",
+            "Only copy to clipboard, do not focus any panel"
+          ],
+          "default": "claudeCode",
+          "description": "Target panel to auto-focus and paste after copying the reference"
         }
       }
     }
