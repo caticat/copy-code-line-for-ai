@@ -3,7 +3,7 @@
   "displayName": "Copy Code Line For AI",
   "description": "Copy the relative file path and line number range of a code snippet",
   "publisher": "panjie039",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/caticat/copy-code-line-for-ai"
