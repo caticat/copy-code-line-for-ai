@@ -32,8 +32,9 @@ export function activate(context: vscode.ExtensionContext): void {
 
     await vscode.env.clipboard.writeText(result);
 
-    const autoFocus = config.get<boolean>('autoFocusClaudeCode', true);
-    if (autoFocus) {
+    const target = config.get<string>('autoFocusTarget', 'claudeCode');
+
+    if (target === 'claudeCode') {
       // 无选区时临时选中光标附近一个字符，触发 Claude Code 的剪贴板读取
       if (isEmpty) {
         const pos = selection.active;
@@ -54,7 +55,17 @@ export function activate(context: vscode.ExtensionContext): void {
       if (isEmpty) {
         editor.selection = selection;
       }
+    } else if (target === 'vscodeChat') {
+      await new Promise((r) => setTimeout(r, CLIPBOARD_DELAY_MS));
+      try {
+        await vscode.commands.executeCommand('workbench.action.chat.open');
+        await new Promise((r) => setTimeout(r, CLIPBOARD_DELAY_MS));
+        await vscode.commands.executeCommand('editor.action.clipboardPasteAction');
+      } catch {
+        // VS Code Chat 不可用时静默跳过
+      }
     }
+    // target === 'none': 只复制到剪贴板，不做任何聚焦
 
     // vscode.window.showInformationMessage(`Copied: ${result}`);
   });
